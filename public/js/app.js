@@ -43818,6 +43818,15 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+Echo.channel('notifications').listen('UserSessionChanged', function (e) {
+  var noticationElement = document.getElementById('notification');
+  noticationElement.innerText = e.message;
+  noticationElement.classList.remove('invisible');
+  noticationElement.classList.remove('alert-success');
+  noticationElement.classList.remove('alert-danger');
+  noticationElement.classList.add('alert-' + e.type);
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
