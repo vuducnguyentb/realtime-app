@@ -14,17 +14,18 @@ class UserSessionChanged implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
-    public $type;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message,$type)
+    public $message;
+    public $type;
+
+    public function __construct($message, $type)
     {
-        $this->message = $message;
         $this->type = $type;
+        $this->message = $message;
     }
 
     /**
@@ -34,6 +35,8 @@ class UserSessionChanged implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        \Log::debug($this->message);
+        \Log::debug($this->type);
         return new Channel('notifications');
     }
 }
