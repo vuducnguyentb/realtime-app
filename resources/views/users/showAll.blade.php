@@ -25,10 +25,8 @@
             let users = response.data;
             users.forEach((user,index)=>{
                 let element = document.createElement('li');
-
                 element.setAttribute('id',user.id);
                 element.innerText = user.name;
-
                 usersElements.appendChild(element);
             })
         })
