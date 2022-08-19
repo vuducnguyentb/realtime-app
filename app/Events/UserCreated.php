@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -19,7 +20,7 @@ class UserCreated implements ShouldBroadcast
      */
     public $user;
 
-    public function __construct($user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -31,6 +32,7 @@ class UserCreated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        \Log::debug("Created {$this->user->name}");
         return new Channel('users ');
     }
 }
