@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::view('/game','game.show')->name('game.show');
 
 Auth::routes();
 
@@ -21,4 +22,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/users','users.showAll')->name('users.all');
 
-Route::view('/game','game.show')->name('game.show');
