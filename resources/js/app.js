@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-Echo.channel('notifications')
+Echo.private('notifications')
     .listen('UserSessionChanged',(e)=>{
         const noticationElement = document.getElementById('notification');
         noticationElement.innerText = e.message;
