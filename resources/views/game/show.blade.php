@@ -20,7 +20,6 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Game</div>
-
                     <div class="card-body">
                         <div class="text-center">
                             <img id="circle" src="{{asset('img/circle.png')}}"
