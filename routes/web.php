@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/users','users.showAll')->name('users.all');
 
+Route::get('/chat','ChatController@showChat')->name('chat.show');
+
