@@ -18,17 +18,35 @@
     </div>
 @endsection
 @push('scripts')
-<script>
-    window.axios.get('/api/users')
-        .then((response)=>{
-            const usersElements = document.getElementById('users');
-            let users = response.data;
-            users.forEach((user,index)=>{
+    <script>
+        window.axios.get('/api/users')
+            .then((response) => {
+                const usersElements = document.getElementById('users');
+                let users = response.data;
+                users.forEach((user, index) => {
+                    let element = document.createElement('li');
+                    element.setAttribute('id', user.id);
+                    element.innerText = user.name;
+                    usersElements.appendChild(element);
+                })
+            })
+    </script>
+    <script>
+        Echo.channel('users')
+            .listen('UserCreated', (e) => {
+                const usersElements = document.getElementById('users');
                 let element = document.createElement('li');
-                element.setAttribute('id',user.id);
-                element.innerText = user.name;
+                element.setAttribute('id', e.user.id);
+                element.innerText = e.user.name;
                 usersElements.appendChild(element);
             })
-        })
-</script>
+            .listen('UserUpdated', (e => {
+                const element = document.getElementById(e.user.id);
+                element.innerText = e.user.name;
+            }))
+            .listen('Userdeleted', (e => {
+                const element = document.getElementById(e.user.id);
+                element.parentNode.removeChild(element);
+            }))
+    </script>
 @endpush
